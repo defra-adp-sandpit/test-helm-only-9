@@ -1,0 +1,31 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-helm-only-9
+  description: test-helm-only-9
+  annotations:
+    github.com/project-slug: defra-adp-sandpit/test-helm-only-9
+    backstage.io/techdocs-ref: dir:.
+    dev.azure.com/project: defra-ffc
+    dev.azure.com/build-definition: test-helm-only-9
+    backstage.io/kubernetes-id: test-helm-only-9
+  links:
+    - url: https://github.com/defra-adp-sandpit/test-helm-only-9
+      title: GitHub Repository
+      icon: github
+    - url: https://dev.azure.com/defragovuk/defra-ffc/
+      title: Azure DevOps Project
+      icon: project
+    - url: https://portal.azure.com/defradev.onmicrosoft.com
+      title: Azure Portal - Defra Dev
+      icon: cloud
+    - url: https://portal.azure.com/Defra.onmicrosoft.com
+      title: Azure Portal - Defra
+      icon: cloud
+
+spec:
+  type: helm
+  lifecycle: alpha
+  owner: "group:default/ffc-demo10"
+  system: system:default/adp-shared-services
+

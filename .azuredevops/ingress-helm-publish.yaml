@@ -1,0 +1,37 @@
+parameters:
+  - name: deployFromFeature
+    displayName: "Deploy from Feature Branch"
+    type: boolean
+    default: false
+pr:
+  branches:
+    include:
+      - main
+  drafts: false
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+
+resources:
+  repositories:
+    - repository: DEFRA-ADPPipelineCommon
+      name: DEFRA/adp-pipeline-common
+      endpoint: DEFRA
+      type: github
+      ref: refs/heads/main
+
+extends:
+  template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
+  parameters:
+    projectName: "test-helm-only-9"
+    serviceName: "test-helm-only-9"
+    deployFromFeature: ${{ parameters.deployFromFeature }}
+    includePlatformEnvs: true
+    appBuildConfig:
+      appFrameworkType: "helm"
+      projectPath: "helm/test-helm-only-9/Chart.yaml"
+      imageRepoName: "test-helm-only-9"
+
